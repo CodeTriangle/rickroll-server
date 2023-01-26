@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# RC.D SERVICE FILE FOR RICHARD'S RICKROLL SERVER
+#
+
+# PROVIDE: rickroll
+# REQUIRE: NETWORKING
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name="rickroll"
+desc="Server to rickroll you"
+rickroll_chdir="/usr/local/www/rickroll-server"
+executable="/usr/local/www/rickroll-server/target/release/rickroll"
+command="/usr/sbin/daemon"
+pidfile="/var/run/${name}.pid"
+command_args=" -f -P ${pidfile} ${executable}"
+
+run_rc_command "$1"
